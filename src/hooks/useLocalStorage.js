@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 const useLocalStorage = (storageName = "storedData") => {
   const [storage, setStorage] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     try {
       const localStorage = window.localStorage.getItem(storageName);
@@ -11,6 +13,8 @@ const useLocalStorage = (storageName = "storedData") => {
       console.error(
         `Could not retrieve localStorage${e.message ? `\n${e.message}` : ""}`,
       );
+    } finally {
+      setIsLoaded(true);
     }
   }, [storageName]);
 
@@ -26,7 +30,7 @@ const useLocalStorage = (storageName = "storedData") => {
       return newStorage;
     });
   }
-  return { storageData: storage, setStorageItem };
+  return { storageData: storage, setStorageItem, isLoaded };
 };
 
 export default useLocalStorage;

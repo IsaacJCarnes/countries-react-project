@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CountryList />} />
 
-        <Route path="/country/:countryId" element={<CountryDetails />} />
+        <Route path="/country/:countryCode" element={<CountryDetails />} />
 
       </Routes>
     </>

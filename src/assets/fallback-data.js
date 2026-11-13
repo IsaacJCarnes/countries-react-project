@@ -1,4 +1,4 @@
-export default [
+const fallbackData = [
   {
     "name": "Abkhazia",
     "nativeName": "Аҧсны",
@@ -6108,3 +6108,5 @@ export default [
     "flagUrl": "https://flags.restcountries.com/v5/svg/ax.svg"
   }
 ]
+
+export default fallbackData;

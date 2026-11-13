@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url) => {
+const useFetch = (url, headers = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +20,7 @@ const useFetch = (url) => {
       try {
         const response = await fetch(url, {
           signal: controller.signal,
+          headers,
         });
 
         if (!response.ok) {
@@ -27,7 +28,6 @@ const useFetch = (url) => {
         }
 
         const result = await response.json();
-
         if (!controller.signal.aborted) {
           setData(result);
         }
@@ -35,7 +35,6 @@ const useFetch = (url) => {
         if (controller.signal.aborted) {
           return;
         }
-
         setError(err ? err.message : "An unexpected error occurred.");
       } finally {
         if (!controller.signal.aborted) {
@@ -43,7 +42,6 @@ const useFetch = (url) => {
         }
       }
     }
-
     fetchData();
 
     return () => {
