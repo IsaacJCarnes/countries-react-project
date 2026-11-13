@@ -1,48 +1,55 @@
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 :root {
   color-scheme: light dark;
-  --text: light-dark(#0a0a0a, #f1eded);
-  --text-h: light-dark(#08060d, #f3f4f6);
-  --bg: #111111;
-  --element-bg: light-dark(#ffffff, #252525);
-  --modal-bg: light-dark(#f4f7f9, #1a1a1a);
-  --light-button: light-dark(#34495e, #f39c12);
-  --light-button-text: light-dark(#f4f7f9, #1a1a1a);
-  --border-color: light-dark(#eeeeee, #3a3a3a);
-  --item-color: light-dark(#fff, #2a2a2a);
-  --button-bg: light-dark(#e0e0e0, #444);
-  --button-hover: light-dark(#bbb, #555);
-  --blue-button-bg: #007bff;
-  --blue-button-text: white;
-  --blue-button-hover: #0056b3;
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+
+  --bg-color: light-dark(hsl(0, 0%, 98%), hsl(207, 26%, 17%));
+  --text-color: light-dark(hsl(200, 15%, 8%), hsl(0, 0%, 100%));
+  --input-color: light-dark(hsl(0, 0%, 52%), hsl(0, 0%, 100%));
+  --elements-color: light-dark(hsl(0, 0%, 100%), hsl(209, 23%, 22%));
+  --sans: "Outfit", sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
 
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-color);
 
   @media (max-width: 1024px) {
     font-size: 16px;
   }
-}
 
-body {
-  margin: 0;
+  --fill-width: 100%;
+  @supports (width: -moz-available) {
+    --fill-width: -moz-available;
+  }
+  @supports (width: -webkit-fill-available) {
+    --fill-width: -webkit-fill-available;
+  }
+  @supports (width: stretch) {
+    --fill-width: stretch;
+  }
 }
 
 #root {
-  width: 100%;
-  max-width: 450px;
-  margin: 0px auto;
-  padding: 0px 20px;
+  position: relative;
+  width: var(--fill-width);
+  margin: 0px 0px;
+  padding: 0px 0px;
   text-align: center;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
+}
+
+* {
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
 }
