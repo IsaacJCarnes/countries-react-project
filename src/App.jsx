@@ -14,10 +14,10 @@ function App() {
     <div id="App" className={theme}>
       <PageHeader />
       <Routes>
-        <Route path={`${basename}/`} element={<CountryList />} />
+        <Route path="/" element={<CountryList />} />
 
         <Route
-          path={`${basename}/country/:countryIndex`}
+          path="/country/:countryIndex"
           element={<CountryDetails />}
         />
       </Routes>
