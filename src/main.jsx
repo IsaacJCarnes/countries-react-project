@@ -8,7 +8,7 @@ import App from "./App.jsx";
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/countries-react-project">
       <AppProvider>
         <App />
       </AppProvider>
