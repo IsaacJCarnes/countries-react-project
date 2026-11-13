@@ -36,7 +36,11 @@ function CountryDetails() {
 
   return (
     <div id="details">
-      <button className="basicElement" id="details-back" onClick={() => navigate(-1)}>
+      <button
+        className="basicElement"
+        id="details-back"
+        onClick={() => navigate(-1)}
+      >
         <span className="fa fa-arrow-left"></span>Back
       </button>
       <section>

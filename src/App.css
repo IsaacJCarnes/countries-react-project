@@ -1,7 +1,10 @@
 #App {
   width: var(--fill-width);
-  height: 100vh;
+  height: 100svh;
   background: var(--bg-color);
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -13,6 +16,7 @@ header {
   padding: 0px 40px;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
   height: 70px;
+  flex: 0 0 auto;
 }
 
 header a {
@@ -44,8 +48,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: var(--fill-width);
+  flex: 1;
+  overflow-x: clip;
+  overflow-y: auto;
 }
 #filter-section {
   display: flex;
@@ -86,16 +92,18 @@ h1 {
 #country-list {
   position: relative;
   display: grid;
-  height: var(--fill-height);
+  height: fit-content;
   width: var(--fill-width);
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fit, 250px);
   max-width: 1200px;
   justify-content: center;
   gap: 40px;
   padding: 0px;
+  flex: 1;
 }
 
 #country-list > a {
+  height: fit-content;
   text-decoration: none;
 }
 
@@ -131,6 +139,20 @@ h1 {
 .country-item h3 {
   font-size: large;
   margin: 15px 20px;
+}
+
+#PageButtons{
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#PageButtons button{
+  border: none;
+  background: none;
+  text-decoration: underline;
+  font-size: normal;
 }
 
 /* Details View */
@@ -179,7 +201,7 @@ h1 {
 
 #details ul {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 210px);
+  grid-template-columns: repeat(auto-fit, 210px);
   justify-content: center;
   padding: 0px;
   gap: 20px;

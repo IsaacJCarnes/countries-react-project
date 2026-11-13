@@ -10,32 +10,34 @@ function FilterSection({}) {
       <div id="filter-name" className="basicElement">
         <span className="fa fa-magnifying-glass"></span>
         <input
+          defaultValue={filter['name']}
           id="filter-search"
           placeholder="Search for a country..."
           onChange={(e) => changeFilter("name", e.target.value)}
         />
       </div>
       <select
+        defaultValue={filter['region']}
         id="filter-region"
         className="basicElement"
         onChange={(e) => changeFilter("region", e.target.value)}
       >
-        <option value="" selected={filter["region"] == ""}>
+        <option value="">
           Filter by Region
         </option>
-        <option value="Africa" selected={filter["region"] == "Africa"}>
+        <option value="Africa" >
           Africa
         </option>
-        <option value="America" selected={filter["region"] == "America"}>
+        <option value="America">
           America
         </option>
-        <option value="Asia" selected={filter["region"] == "Asia"}>
+        <option value="Asia">
           Asia
         </option>
-        <option value="Europe" selected={filter["region"] == "Europe"}>
+        <option value="Europe">
           Europe
         </option>
-        <option value="Oceania" selected={filter["region"] == "Oceania"}>
+        <option value="Oceania">
           Oceania
         </option>
       </select>
