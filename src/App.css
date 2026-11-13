@@ -153,6 +153,11 @@ h1 {
   background: none;
   text-decoration: underline;
   font-size: normal;
+  cursor: pointer;
+}
+
+#PageButtons button[disabled]{
+  color: rgb(145, 145, 145);
 }
 
 /* Details View */

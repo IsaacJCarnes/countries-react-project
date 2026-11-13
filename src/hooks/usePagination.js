@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function usePagination(totalItems, itemsPerPage, initialPage) {
+export default function usePagination({
+  totalItems,
+  itemsPerPage,
+  initialPage = 0,
+  accordianWingSize = 2,
+}) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(
     Math.min(initialPage, totalPages),
@@ -14,7 +19,7 @@ export default function usePagination(totalItems, itemsPerPage, initialPage) {
 
   useEffect(() => {
     setCurrentPage(Math.min(initialPage, totalPages));
-  }, [itemsPerPage, initialPage]);
+  }, [itemsPerPage, initialPage, totalItems]);
 
   function setPage(page) {
     if (-1 < page && page < totalPages) {
@@ -35,6 +40,32 @@ export default function usePagination(totalItems, itemsPerPage, initialPage) {
   function prevPage() {
     setCurrentPage((prevVal) => prevVal - 1);
   }
+
+  function getAccordionArray() {
+    if (totalPages === 0) return [];
+
+    const accordionArray = [];
+    const start = Math.max(currentPage - accordianWingSize, 0);
+    const end = Math.min(currentPage + accordianWingSize, totalPages - 1);
+
+    if (start > 0) {
+      accordionArray.push(0);
+      if (start > 1) accordionArray.push(start === 2 ? 1 : null);
+    }
+
+    for (let page = start; page <= end; page += 1) {
+      accordionArray.push(page);
+    }
+
+    if (end < totalPages - 1) {
+      if (end < totalPages - 2) {
+        accordionArray.push(end === totalPages - 3 ? totalPages - 2 : null);
+      }
+      accordionArray.push(totalPages - 1);
+    }
+    return accordionArray;
+  }
+
   return {
     currentPage,
     totalPages,
@@ -46,5 +77,6 @@ export default function usePagination(totalItems, itemsPerPage, initialPage) {
     prevPage,
     canNextPage,
     canPrevPage,
+    getAccordionArray,
   };
 }
