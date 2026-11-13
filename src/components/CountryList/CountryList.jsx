@@ -12,7 +12,7 @@ function CountryList() {
       <FilterSection />
       <ul id="country-list">
         {countries &&
-          countries.map((country) => <Link to={`/country/${country['index']}`}><CountryItem country={country} /></Link>)}
+          countries.map((country, index) => <Link key={index} to={`/country/${country['index']}`}><CountryItem country={country} /></Link>)}
       </ul>
     </section>
   );

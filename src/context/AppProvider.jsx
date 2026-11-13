@@ -14,7 +14,7 @@ const dayRefreshLimit = 2;
 
 export function AppProvider({ children }) {
   const [doneLoading, setDoneLoading] = useState(false);
-  const { storageData, setStorageItem, isLoaded } =
+  const { storageData, setStorageItem, setStorageItems, isLoaded } =
     useLocalStorage("CountryViewer");
   const storedCountryArray = storageData.countries ?? [];
   const storedDate = Date.parse(storageData.storedDate);
@@ -65,8 +65,10 @@ export function AppProvider({ children }) {
         ...country,
         index,
       }));
-      setStorageItem("countries", indexedArray);
-      setStorageItem("storedDate", new Date().toISOString());
+      setStorageItems({
+        countries: indexedArray,
+        storedDate: new Date().toISOString(),
+      });
       setDoneLoading(true);
       return;
     }
@@ -90,8 +92,10 @@ export function AppProvider({ children }) {
         ...country,
         index,
       }));
-      setStorageItem("countries", indexedArray);
-      setStorageItem("storedDate", new Date().toISOString());
+      setStorageItems({
+        countries: indexedArray,
+        storedDate: new Date().toISOString(),
+      });
       setDoneLoading(true);
       return;
     }
@@ -102,8 +106,10 @@ export function AppProvider({ children }) {
       ...country,
       index,
     }));
-    setStorageItem("countries", indexedArray);
-    setStorageItem("storedDate", new Date().toISOString());
+    setStorageItems({
+      countries: indexedArray,
+      storedDate: new Date().toISOString(),
+    });
     setDoneLoading(true);
   }, [
     shouldFetchCountryData,

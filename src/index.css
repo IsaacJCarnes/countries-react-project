@@ -16,12 +16,6 @@ body {
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
 
-  background: var(--bg-color);
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-
   --fill-width: 100%;
   @supports (width: -moz-available) {
     --fill-width: -moz-available;
@@ -61,6 +55,6 @@ body {
 * {
   color: var(--text-color);
   font-weight: 600;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--sans);
   font-optical-sizing: auto;
 }

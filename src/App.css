@@ -1,3 +1,9 @@
+#App {
+  width: var(--fill-width);
+  height: 100vh;
+  background: var(--bg-color);
+}
+
 header {
   width: var(--fill-width);
   display: flex;
@@ -7,6 +13,10 @@ header {
   padding: 0px 40px;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
   height: 70px;
+}
+
+header a {
+  text-decoration: none;
 }
 
 h1 {
@@ -85,6 +95,10 @@ h1 {
   padding: 0px;
 }
 
+#country-list > a {
+  text-decoration: none;
+}
+
 .country-item {
   display: flex;
   flex-direction: column;
@@ -127,7 +141,6 @@ h1 {
   left: 0px;
   height: var(--fill-height);
   width: var(--fill-width);
-
   font-size: 16px;
   background-color: var(--bg-color);
 }
@@ -232,4 +245,12 @@ input::placeholder {
     grid-template-columns: minmax(160px, 400px) 500px;
     justify-content: space-evenly;
   }
+}
+
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
 }

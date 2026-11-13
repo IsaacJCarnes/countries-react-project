@@ -1,9 +1,10 @@
 import { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { CountriesContext } from "../../context/AppProvider";
 
 function CountryDetails() {
+  const navigate = useNavigate();
   const { countryIndex } = useParams();
   const { countries, isLoading } = useContext(CountriesContext);
   const [country, setCountry] = useState({});
@@ -32,9 +33,10 @@ function CountryDetails() {
       );
     });
   }
+
   return (
     <div id="details">
-      <button className="basicElement" id="details-back">
+      <button className="basicElement" id="details-back" onClick={() => navigate(-1)}>
         <span className="fa fa-arrow-left"></span>Back
       </button>
       <section>

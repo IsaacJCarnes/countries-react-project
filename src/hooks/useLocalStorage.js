@@ -30,7 +30,24 @@ const useLocalStorage = (storageName = "storedData") => {
       return newStorage;
     });
   }
-  return { storageData: storage, setStorageItem, isLoaded };
+
+  function setStorageItems(items) {
+    if (typeof items !== "object") {
+      console.error("setStorageItems must be called with an object");
+      return;
+    }
+    setStorage((previousStorage) => {
+      const newStorage = {
+        ...previousStorage,
+        ...items,
+      };
+
+      window.localStorage.setItem(storageName, JSON.stringify(newStorage));
+
+      return newStorage;
+    });
+  }
+  return { storageData: storage, setStorageItem, setStorageItems, isLoaded };
 };
 
 export default useLocalStorage;

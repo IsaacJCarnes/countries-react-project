@@ -4,7 +4,10 @@ import { CountriesContext } from "../../context/AppProvider";
 function CountryItem({ country }) {
   return (
     <li className="country-item basicElement">
-      <img className="country-image" src={country && country["flagUrl"]} />
+      <img
+        className="country-image"
+        src={country && country["flagUrl"] ? country["flagUrl"] : null}
+      />
       <h3 className="country-name">{country && country["name"]}</h3>
       <dl>
         <dt>Population: </dt>
