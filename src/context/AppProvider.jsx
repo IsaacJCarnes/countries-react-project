@@ -126,6 +126,11 @@ export function AppProvider({ children }) {
 
   const [filter, setFilter] = useState({});
 
+  const changeFilter = (name, value) => {
+    setFilter({...filter, [name]: value})
+  }
+
+
   const theme = storageData.theme ? storageData.theme : "light";
 
   const toggleTheme = () => {
@@ -139,7 +144,7 @@ export function AppProvider({ children }) {
         countries: storedCountryArray,
       }}
     >
-      <FilterContext.Provider value={{ filter, setFilter }}>
+      <FilterContext.Provider value={{ filter, changeFilter, setFilter }}>
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
           {children}
         </ThemeContext.Provider>
