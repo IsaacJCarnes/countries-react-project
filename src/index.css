@@ -32,6 +32,17 @@ body {
   @supports (width: stretch) {
     --fill-width: stretch;
   }
+
+  --fill-height: 100%;
+  @supports (height: -moz-available) {
+    --fill-height: -moz-available;
+  }
+  @supports (height: -webkit-fill-available) {
+    --fill-height: -webkit-fill-available;
+  }
+  @supports (height: stretch) {
+    --fill-height: stretch;
+  }
 }
 
 #root {

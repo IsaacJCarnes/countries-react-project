@@ -9,15 +9,6 @@ header {
   height: 70px;
 }
 
-main {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
 h1 {
   font-size: 25px;
   margin: 20px;
@@ -66,7 +57,7 @@ h1 {
 
 #filter-search {
   width: var(--fill-width);
-  height: 100%;
+  height: var(--fill-height);
   background-color: unset;
   border: unset;
   color: var(--input-color);
@@ -85,9 +76,10 @@ h1 {
 #country-list {
   position: relative;
   display: grid;
-  height: 100%;
+  height: var(--fill-height);
   width: var(--fill-width);
   grid-template-columns: repeat(auto-fill, 250px);
+  max-width: 1200px;
   justify-content: center;
   gap: 40px;
   padding: 0px;
@@ -128,35 +120,27 @@ h1 {
 }
 
 /* Details View */
-details {
-  display: none;
-  position: absolute;
-  padding: var(--section-padding);
+#details {
+  position: relative;
+  padding: 20px;
   top: 0px;
   left: 0px;
-  height: calc(100% - var(--section-padding) * 2);
+  height: var(--fill-height);
   width: var(--fill-width);
+
   font-size: 16px;
-  content: "";
   background-color: var(--bg-color);
 }
 
-details[open] {
-  display: block;
-}
-
-summary::marker {
-  content: "";
-}
-
 #details-image {
-  width: 60%;
+  width: var(--fill-width);
 }
 
 #details-back {
   height: 35px;
-  margin-left: 10px;
-  margin-bottom: 50px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
   width: 125px;
 }
 
@@ -164,20 +148,31 @@ summary::marker {
   margin-right: 10px;
 }
 
-details section {
+#details-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--fill-width);
+}
+
+#details > section {
+  margin-top: 40px;
+  width: var(--fill-width);
   display: flex;
   align-items: center;
   gap: 10px;
   flex-direction: column;
 }
 
-details ul {
-  display: flex;
-  flex-direction: column;
+#details ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 210px);
+  justify-content: center;
   padding: 0px;
   gap: 20px;
   width: var(--fill-width);
-  height: 200px;
+  max-width: 500px;
+  height: fit-content;
   flex-wrap: wrap;
 }
 
@@ -221,13 +216,20 @@ input::placeholder {
   color: var(--input-color);
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
+  #details-back {
+    left: 15px;
+    top: 15px;
+  }
   #filter-section {
     flex-direction: row;
-    padding: 0px;
+    padding: 20px;
   }
 
-  details section {
-    flex-direction: row;
+  #details > section {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: minmax(160px, 400px) 500px;
+    justify-content: space-evenly;
   }
 }

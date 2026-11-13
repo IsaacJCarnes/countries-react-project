@@ -15,7 +15,6 @@ export function reduceCountryArray(inputArray) {
     const firstTypeKey = Object.keys(nativeNameType)[0];
 
     return {
-      index: country.index,
       name: country.names?.common ?? "",
       nativeName: firstTypeKey ? (nativeNameType[firstTypeKey] ?? "") : "",
       population: country.population,

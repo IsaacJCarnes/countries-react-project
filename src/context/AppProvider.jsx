@@ -61,9 +61,13 @@ export function AppProvider({ children }) {
         "Could not retrieve country data; using fallback data.",
         errors,
       );
-      setDoneLoading(true);
-      setStorageItem("countries", fallbackData);
+      const indexedArray = fallbackData.map((country, index) => ({
+        ...country,
+        index,
+      }));
+      setStorageItem("countries", indexedArray);
       setStorageItem("storedDate", new Date().toISOString());
+      setDoneLoading(true);
       return;
     }
     if (
@@ -82,16 +86,25 @@ export function AppProvider({ children }) {
       console.error(
         "Country API returned an invalid response; using fallback data.",
       );
-      setDoneLoading(true);
-      setStorageItem("countries", fallbackData);
+      const indexedArray = fallbackData.map((country, index) => ({
+        ...country,
+        index,
+      }));
+      setStorageItem("countries", indexedArray);
       setStorageItem("storedDate", new Date().toISOString());
+      setDoneLoading(true);
       return;
     }
 
     const countryArray = countryObjects.flat();
-    setDoneLoading(true);
-    setStorageItem("countries", reduceCountryArray(countryArray));
+    const reducedArray = reduceCountryArray(countryArray);
+    const indexedArray = reducedArray.map((country, index) => ({
+      ...country,
+      index,
+    }));
+    setStorageItem("countries", indexedArray);
     setStorageItem("storedDate", new Date().toISOString());
+    setDoneLoading(true);
   }, [
     shouldFetchCountryData,
     countryData1,
@@ -111,7 +124,7 @@ export function AppProvider({ children }) {
 
   const toggleTheme = () => {
     setStorageItem("theme", theme === "light" ? "dark" : "light");
-  }
+  };
 
   return (
     <CountriesContext.Provider

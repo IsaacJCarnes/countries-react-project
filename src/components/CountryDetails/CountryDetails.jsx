@@ -4,48 +4,45 @@ import { Link, useParams } from "react-router-dom";
 import { CountriesContext } from "../../context/AppProvider";
 
 function CountryDetails() {
-  const { countryCode } = useParams();
+  const { countryIndex } = useParams();
   const { countries, isLoading } = useContext(CountriesContext);
   const [country, setCountry] = useState({});
 
-  const getCountry = (code) => {
-    const filteredList = countries.filter(
-      (country) => country.code.toLowerCase() === code.toLowerCase(),
-    );
+  const getCountry = (name, value) => {
+    const filteredList = countries.filter((country) => country[name] == value);
     return filteredList.length > 0 ? filteredList[0] : {};
   };
 
   useEffect(() => {
     if (isLoading) return;
-    const country = getCountry(countryCode);
-    setCountry(country);
-  }, [countryCode, isLoading, countries]);
+    const foundCountry = getCountry("index", countryIndex);
+    setCountry(foundCountry);
+  }, [countryIndex, isLoading, countries]);
 
   function borderButtons() {
     if (!country || !country["borders"]) {
       return <></>;
     }
     return country["borders"].map((borderCountryCode, index) => {
-      const borderCountry = getCountry(borderCountryCode);
+      const borderCountry = getCountry("code", borderCountryCode);
       return (
-        <Link key={index} to={`/country/${borderCountry["code"]}`}>
+        <Link key={index} to={`/country/${borderCountry["index"]}`}>
           <button className="basicElement">{borderCountry["name"]}</button>
         </Link>
       );
     });
   }
   return (
-    <details>
-      <summary></summary>
-      <button className="txt-sm basicElement" id="details-back">
+    <div id="details">
+      <button className="basicElement" id="details-back">
         <span className="fa fa-arrow-left"></span>Back
       </button>
-      <section className="fill">
+      <section>
         <img
           id="details-image"
           src={country && country["flagUrl"] ? country["flagUrl"] : null}
         />
-        <div className="flx-col" id="details-holder">
+        <div id="details-holder">
           <h3 id="details-name">{country && country["name"]}</h3>
           <ul>
             <dl>
@@ -99,7 +96,7 @@ function CountryDetails() {
           </dl>
         </div>
       </section>
-    </details>
+    </div>
   );
 }
 
